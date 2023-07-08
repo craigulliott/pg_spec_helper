@@ -1,0 +1,87 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: specs_user
+          POSTGRES_PASSWORD: specs_password
+          POSTGRES_DB: pg_spec_helper
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+
+      # Execute "release please" action
+      - uses: GoogleCloudPlatform/release-please-action@v3
+        id: release
+        with:
+          # The release type
+          release-type: ruby
+          # A name for the artifact releases are being created for
+          # which is the name of our gem
+          package-name: pg_spec_helper
+          # Should breaking changes before 1.0.0 produce minor bumps?
+          bump-minor-pre-major: true
+          # Path to our version file to increment
+          version-file: "lib/pg_spec_helper/version.rb"
+
+      # Checkout code if release was created
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+
+      # Setup ruby if a release was created
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+        if: ${{ steps.release.outputs.release_created }}
+
+      # Bundle install
+      - run: bundle install
+        if: ${{ steps.release.outputs.release_created }}
+
+      # move the database configuration into place
+      - name: Move database configuration file
+        run: mv config/database.ci.yaml config/database.yaml
+        if: ${{ steps.release.outputs.release_created }}
+
+      # run the linter
+      - name: Run standard linter
+        run: bundle exec standardrb
+        if: ${{ steps.release.outputs.release_created }}
+
+      # run the type checker
+      - name: Run steep type checker
+        run: bundle exec steep check
+        if: ${{ steps.release.outputs.release_created }}
+
+      # run the tests
+      - name: Run rspec test suite
+        run: bundle exec rspec
+        if: ${{ steps.release.outputs.release_created }}
+
+      # Publish the Gem to ruby gems
+      - name: Publish gem
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push *.gem
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GEM_HOST_API_KEY: "${{ secrets.RUBYGEMS_AUTH_TOKEN  }}"
