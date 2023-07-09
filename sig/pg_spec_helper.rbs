@@ -3,10 +3,6 @@
 # Classes
 class PGSpecHelper
   VERSION: String
-  include IndexCache
-  include ForeignKeyCache
-  include StructureCache
-  include ValidationCache
   include Indexes
   include PrimaryKeys
   include UniqueConstraints
@@ -112,13 +108,13 @@ class PGSpecHelper
   module UniqueConstraints
     @has_changes: bool
 
-    def add_unique_constraint: (untyped schema_name, untyped table_name, untyped column_names, untyped constraint_key_name) -> bool
+    def create_unique_constraint: (untyped schema_name, untyped table_name, untyped column_names, untyped constraint_key_name) -> bool
   end
 
   module PrimaryKeys
     @has_changes: bool
 
-    def add_primary_key: (untyped schema_name, untyped table_name, untyped column_names) -> bool
+    def create_primary_key: (untyped schema_name, untyped table_name, untyped column_names) -> bool
   end
 
   module Indexes
@@ -127,31 +123,4 @@ class PGSpecHelper
     def create_index: (untyped schema_name, untyped table_name, untyped column_names, untyped index_name, untyped `type`, untyped deferrable, untyped initially_deferred) -> bool
   end
 
-  module ValidationCache
-    @validations_cache_exists: untyped
-
-    def refresh_validation_cache_materialized_view: -> nil
-    def validations_cache_exists?: -> untyped
-  end
-
-  module StructureCache
-    @structure_cache_exists: untyped
-
-    def refresh_structure_cache_materialized_view: -> nil
-    def structure_cache_exists?: -> untyped
-  end
-
-  module ForeignKeyCache
-    @keys_and_unique_constraints_cache_exists: untyped
-
-    def refresh_keys_and_unique_constraints_cache_materialized_view: -> nil
-    def keys_and_unique_constraints_cache_exists?: -> untyped
-  end
-
-  module IndexCache
-    @index_cache_exists: untyped
-
-    def refresh_index_cache_materialized_view: -> nil
-    def index_cache_exists?: -> untyped
-  end
 end

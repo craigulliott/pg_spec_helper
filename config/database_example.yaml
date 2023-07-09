@@ -1,8 +1,7 @@
 # this file is used by the test suite to connect to the database
-postgres:
-  primary:
-    database: pg_spec_helper_test
-    username: pg_spec_helper
-    password:
-    host: localhost
-    port: 5432
+test:
+  database: pg_spec_helper_test
+  username: pg_spec_helper
+  password:
+  host: localhost
+  port: 5432

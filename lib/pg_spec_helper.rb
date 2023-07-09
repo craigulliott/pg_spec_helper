@@ -5,8 +5,9 @@ require "pg"
 
 require "pg_spec_helper/version"
 
-require "pg_spec_helper/configuration"
 require "pg_spec_helper/connection"
+require "pg_spec_helper/sanitize"
+require "pg_spec_helper/ignored_schemas"
 require "pg_spec_helper/schemas"
 require "pg_spec_helper/tables"
 require "pg_spec_helper/columns"
@@ -15,14 +16,18 @@ require "pg_spec_helper/foreign_keys"
 require "pg_spec_helper/unique_constraints"
 require "pg_spec_helper/primary_keys"
 require "pg_spec_helper/indexes"
-require "pg_spec_helper/validation_cache"
-require "pg_spec_helper/structure_cache"
-require "pg_spec_helper/foreign_key_cache"
-require "pg_spec_helper/index_cache"
+require "pg_spec_helper/materialized_views"
+require "pg_spec_helper/reset"
+require "pg_spec_helper/empty_database"
+require "pg_spec_helper/track_changes"
 
 class PGSpecHelper
-  include Configuration
+  class MissingRequiredOptionError < StandardError
+  end
+
   include Connection
+  include Sanitize
+  include IgnoredSchemas
   include Schemas
   include Tables
   include Columns
@@ -31,36 +36,34 @@ class PGSpecHelper
   include UniqueConstraints
   include PrimaryKeys
   include Indexes
-  include ValidationCache
-  include StructureCache
-  include ForeignKeyCache
-  include IndexCache
+  include MaterializedViews
+  include Reset
+  include EmptyDatabase
+  include TrackChanges
 
   attr_reader :database, :username, :password, :host, :port
 
-  def initialize name
-    load_configuration_for :postgres, name
+  def initialize database: nil, host: nil, port: nil, username: nil, password: nil
+    # assert that all required options are present
+    raise MissingRequiredOptionError, "database is required" if database.nil?
+    raise MissingRequiredOptionError, "host is required" if host.nil?
+    raise MissingRequiredOptionError, "username is required" if username.nil?
 
-    @database = require_configuration_value(:database).to_sym
-    @host = require_configuration_value :host
-    @port = require_configuration_value :port
-    @username = require_configuration_value :username
-    @password = optional_configuration_value :password
+    # record the configuration
+    @database = database.to_sym
+    @host = host
+    @port = port || 5432
+    @username = username
+    # password is optional
+    @password = password
 
-    # will be set to true if any changes are made to the database structure
-    # this is used to determine if the structure needs to be reset between tests
-    @has_changes = false
-  end
-
-  def has_changes?
-    @has_changes
-  end
-
-  def reset! force = false
-    if force || @has_changes
-      delete_all_schemas cascade: true
-      # note that the database has been reset and there are no changes
-      @has_changes = false
-    end
+    # the TrackChanges module is used to track high level changes which are
+    # made to the database using this class, this allows us to reach out to the
+    # database and reset it only when needed.
+    #
+    # The `install_trackable_methods` method will override the methods which
+    # we are tracking with a new proxy method which will record when the method
+    # is called before subsequently calling the original method.
+    install_trackable_methods
   end
 end
