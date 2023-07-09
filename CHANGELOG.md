@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2023-07-08)
+
+
+### Features
+
+* basic first version, extracted from dynamic_migrations gem ([4d4ed01](https://github.com/craigulliott/pg_spec_helper/commit/4d4ed016d1a19394d0db7c39a01c153670a3edfe))
+
 ## 1.0.0 (2023-07-05)
 
 
