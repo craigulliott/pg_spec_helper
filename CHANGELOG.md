@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.2.0...v1.3.0) (2023-07-10)
+
+
+### Features
+
+* Dont delete the public schema, just remove all the tables instead. This is useful if you have materialized views in the public schema ([9f69160](https://github.com/craigulliott/pg_spec_helper/commit/9f691602bc851fbeea0d01a0f8e9a7555f154e35))
+
 ## [1.2.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.1.0...v1.2.0) (2023-07-10)
 
 
