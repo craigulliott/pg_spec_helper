@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.1.0...v1.2.0) (2023-07-10)
+
+
+### Features
+
+* refresh materialized views automatically based on changes to structure ([e9a8ce0](https://github.com/craigulliott/pg_spec_helper/commit/e9a8ce011578018b2374612e6d6ce8765e49d4db))
+
 ## [1.1.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.0.0...v1.1.0) (2023-07-10)
 
 
