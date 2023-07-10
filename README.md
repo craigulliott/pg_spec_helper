@@ -28,7 +28,7 @@ This gem is concerned with the **structure** of your database, not the data/reco
 * Resets your database after each spec, but only if the spec made changes
 * Ignores `information_schema` and any schemas or tables with names beginning with `pg_`
 * Configurable to ignore other schemas (such as `postgis`)
-* Automatically resets and recreates the `public` schema
+* Deletes tables from within the `public` schema, but does not delete the actual schema during cleanup.
 * Can track and refresh materialized views
 * Easily access the `PG::Connection` object via `pg_spec_helper.connection` to execute your own SQL
 
