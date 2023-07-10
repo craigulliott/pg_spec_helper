@@ -52,11 +52,9 @@ And run bundle install
 
 Note, this gem depends on the postgres gem `pg`, which depends on the `libpq` package. On Apple Silicon you can run the following commands before installation to prepare your system.
 
-```
     # required for pg gem on apple silicon
     $ brew install libpq
     $ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-```
 
 ## Getting Started
 
