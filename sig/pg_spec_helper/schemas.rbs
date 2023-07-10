@@ -5,7 +5,7 @@ class PGSpecHelper
   module Schemas
     def create_schema: (:public schema_name) -> void
     def get_schema_names: -> Array[Symbol]
-    def delete_all_schemas: (?cascade: false) -> void
+    def delete_all_schemas: () -> void
     def schema_exists?: (Symbol schema_name) -> bool
   end
 end

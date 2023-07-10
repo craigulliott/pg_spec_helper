@@ -138,6 +138,32 @@ RSpec.describe PGSpecHelper do
           end
         end
       end
+
+      describe "refreshing materialized view automatically due to use of a trqcked method" do
+        describe "when this materialized view is being tracked" do
+          before(:each) do
+            pg_spec_helper.track_materialized_view :my_schema, :my_materialized_view, [:create_schema]
+          end
+
+          it "refreshes the materialized view" do
+            # assert the expected values before refreshing the materialized view
+            records_before = pg_spec_helper.connection.exec("SELECT count(*) as count from my_schema.my_materialized_view").first["count"]
+            expect(records_before).to eq("3")
+
+            # empty the table
+            pg_spec_helper.connection.exec <<-SQL
+              TRUNCATE my_schema.my_table
+            SQL
+
+            # calling `create_schema` (one of the tracked methods) should refresh the materialized view
+            pg_spec_helper.create_schema :foo
+
+            # assert the expected values before refreshing the materialized view
+            records_after = pg_spec_helper.connection.exec("SELECT count(*) as count from my_schema.my_materialized_view").first["count"]
+            expect(records_after).to eq("0")
+          end
+        end
+      end
     end
   end
 end

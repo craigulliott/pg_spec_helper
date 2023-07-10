@@ -25,14 +25,14 @@ class PGSpecHelper
     end
 
     # delete all schemas in the database
-    def delete_all_schemas cascade: false
+    def delete_all_schemas
       # delete all schemas
       get_schema_names.each do |schema_name|
         connection.exec(<<-SQL)
           -- temporarily set the client_min_messages to WARNING to
           -- suppress the NOTICE messages about cascading deletes
           SET client_min_messages TO WARNING;
-          DROP SCHEMA #{connection.quote_ident schema_name.to_s} #{cascade ? "CASCADE" : ""};
+          DROP SCHEMA #{connection.quote_ident schema_name.to_s} CASCADE;
           SET client_min_messages TO NOTICE;
         SQL
       end

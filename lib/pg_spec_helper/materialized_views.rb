@@ -32,6 +32,22 @@ class PGSpecHelper
 
     private
 
+    # given a trackable method name, refreshes any materialized
+    # views which are configured to be refreshed after that method
+    def refresh_materialized_views_by_method method_name
+      assert_trackable_method_name! method_name
+      # check each materialized view to see if it should be refreshed
+      @materialized_views&.each do |schema_name, views|
+        views.each do |materialized_view_name, view|
+          # if the materialized view exists and the method name is in the list of
+          # this materialized view's refresh_after methods, then refresh the view
+          if view[:refresh_after].include?(method_name) && materialized_view_exists?(schema_name, materialized_view_name)
+            refresh_materialized_view schema_name, materialized_view_name
+          end
+        end
+      end
+    end
+
     # return true if the materialized view exists, otherwise false
     def materialized_view_exists? schema_name, materialized_view_name
       # assert this materialized view is being tracked

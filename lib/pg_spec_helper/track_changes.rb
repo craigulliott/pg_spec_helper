@@ -10,8 +10,15 @@ class PGSpecHelper
     # reset! between tests
     TRACKED_METHOD_CALLS = [
       :create_schema,
+      :delete_all_schemas,
       :create_table,
-      :create_column
+      :delete_tables,
+      :create_column,
+      :create_foreign_key,
+      :create_index,
+      :create_primary_key,
+      :create_unique_constraint,
+      :create_validation
     ]
 
     # returns true if any changes have been made to the database structure
@@ -61,6 +68,8 @@ class PGSpecHelper
           track_change method_name
           # call the original method
           original_method.bind_call(self, *args)
+          # do any materialized views need to be refreshed?
+          refresh_materialized_views_by_method method_name
         end
       end
     end
