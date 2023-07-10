@@ -37,13 +37,13 @@ This gem is concerned with the **structure** of your database, not the data/reco
 Add the gem to your Gemfile:
 
 ```ruby
-  gem "pg_spec_helper"
+gem "pg_spec_helper"
 ```
 
 Or to your `*.gemspec`
 
 ```ruby
-  spec.add_development_dependency "pg_spec_helper"
+spec.add_development_dependency "pg_spec_helper"
 ```
 
 And run bundle install
@@ -53,9 +53,9 @@ And run bundle install
 Note, this gem depends on the postgres gem `pg`, which depends on the `libpq` package. On Apple Silicon you can run the following commands before installation to prepare your system.
 
 ```
-# required for pg gem on apple silicon
-brew install libpq
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+    # required for pg gem on apple silicon
+    $ brew install libpq
+    $ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 ```
 
 ## Getting Started
