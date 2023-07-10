@@ -50,10 +50,6 @@ And run bundle install
 
     $ bundle install
 
-Create your new platform:
-
-    $ pg_spec_helper create my_platform_name
-
 Note, this gem depends on the postgres gem `pg`, which depends on the `libpq` package. On Apple Silicon you can run the following commands before installation to prepare your system.
 
 ```
