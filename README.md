@@ -25,8 +25,8 @@ This gem is concerned with the **structure** of your database, not the data/reco
 
 * Easily create basic tables, columns, constraints, indexes and primary/foreign keys for your specs
 * Provides convenient methods for testing the presence of various database objects
-* Resets your database after each spec, only if the spec made changes
-* Ignores `information_schema` and any schemas or tables beginning with `pg_`
+* Resets your database after each spec, but only if the spec made changes
+* Ignores `information_schema` and any schemas or tables with names beginning with `pg_`
 * Configurable to ignore other schemas (such as `postgis`)
 * Automatically resets and recreates the `public` schema
 * Can track and refresh materialized views
@@ -34,9 +34,21 @@ This gem is concerned with the **structure** of your database, not the data/reco
 
 ## Installation
 
-Install the gem by executing:
+Add the gem to your Gemfile:
 
-    $ gem install pg_spec_helper
+```ruby
+  gem "pg_spec_helper"
+```
+
+Or to your `*.gemspec`
+
+```ruby
+  spec.add_development_dependency "pg_spec_helper"
+```
+
+And run bundle install
+
+    $ bundle install
 
 Create your new platform:
 
@@ -105,7 +117,7 @@ The configuration above will assert that your database is completely empty befor
 
 If rspec crashed or exited prematurely on the last execution of your test suite, then you can tell pg_spec_helper to forcefully clear your database.
 
-`DYNAMIC_MIGRATIONS_CLEAR_DB_ON_STARTUP=true bundle exec rspec`
+    $ DYNAMIC_MIGRATIONS_CLEAR_DB_ON_STARTUP=true bundle exec rspec
 
 #### An example test which requires some specific structure
 
@@ -113,7 +125,7 @@ If rspec crashed or exited prematurely on the last execution of your test suite,
 RSpec.describe PGSpecHelper do
   let(:pg_spec_helper) { RSpec.configuration.pg_spec_helper }
 
-  describe 'where the table `my_schema`.`my_table` exists in the database' do
+  describe 'where the table my_schema.my_table exists and has a single column which is also the primary key' do
     before(:each) do
       pg_spec_helper.create_schema :my_schema
       pg_spec_helper.create_table :my_schema, :my_table
@@ -122,7 +134,7 @@ RSpec.describe PGSpecHelper do
     end
 
     it "test something which required that table to exist" do
-      expect().to_not raise_error
+      expect{}.to_not raise_error
     end
   end
 end
