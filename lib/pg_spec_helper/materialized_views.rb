@@ -30,6 +30,17 @@ class PGSpecHelper
       }
     end
 
+    # refresh all materialized views that have been tracked
+    def refresh_all_materialized_views
+      @materialized_views&.each do |schema_name, views|
+        views.each do |materialized_view_name, view|
+          if materialized_view_exists? schema_name, materialized_view_name
+            refresh_materialized_view schema_name, materialized_view_name
+          end
+        end
+      end
+    end
+
     private
 
     # given a trackable method name, refreshes any materialized
@@ -62,17 +73,6 @@ class PGSpecHelper
       @materialized_views[schema_name.to_sym][materialized_view_name.to_sym][:exists] ||= connection.exec(<<~SQL).count > 0
         SELECT TRUE AS exists FROM pg_matviews WHERE schemaname = '#{sanitize_name schema_name}' AND matviewname = '#{sanitize_name materialized_view_name}';
       SQL
-    end
-
-    # refresh all materialized views that have been tracked
-    def refresh_all_materialized_views
-      @materialized_views&.each do |schema_name, views|
-        views.each do |materialized_view_name, view|
-          if materialized_view_exists? schema_name, materialized_view_name
-            refresh_materialized_view schema_name, materialized_view_name
-          end
-        end
-      end
     end
 
     # whenever schema changes are made from within the test suite we need to
