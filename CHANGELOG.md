@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.0.0...v1.1.0) (2023-07-10)
+
+
+### Features
+
+* documentation, get methods to retrieve current database structure, and full test coverage ([d6c6230](https://github.com/craigulliott/pg_spec_helper/commit/d6c623055d3ac2920bdc4f805973df7f25208329))
+
 ## 1.0.0 (2023-07-08)
 
 
