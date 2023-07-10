@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.3.0...v1.4.0) (2023-07-10)
+
+
+### Features
+
+* made `refresh_all_materialized_views` available as a public method ([dd88ea0](https://github.com/craigulliott/pg_spec_helper/commit/dd88ea0877ba75f5c78ce5083421dd20090be6cb))
+
 ## [1.3.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.2.0...v1.3.0) (2023-07-10)
 
 
