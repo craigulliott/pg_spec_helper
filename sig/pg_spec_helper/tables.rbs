@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Tables
+    def create_table: (Symbol schema_name, Symbol table_name) -> void
+    def get_table_names: (Symbol schema_name) -> Array[Symbol]
+    def delete_tables: (Symbol schema_name) -> void
+  end
+end

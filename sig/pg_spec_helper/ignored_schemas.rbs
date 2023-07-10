@@ -1,0 +1,11 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module IgnoredSchemas
+    @ignored_schemas: Array[Symbol]
+
+    def ignore_schema: (Symbol schema_name) -> void
+    def ignored_schemas: -> Array[Symbol]
+  end
+end

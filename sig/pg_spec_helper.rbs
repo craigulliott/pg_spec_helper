@@ -2,7 +2,14 @@
 
 # Classes
 class PGSpecHelper
+  class MissingRequiredOptionError < StandardError
+  end
+
   VERSION: String
+  include TrackChanges
+  include EmptyDatabase
+  include Reset
+  include MaterializedViews
   include Indexes
   include PrimaryKeys
   include UniqueConstraints
@@ -11,116 +18,15 @@ class PGSpecHelper
   include Columns
   include Tables
   include Schemas
+  include IgnoredSchemas
+  include Sanitize
   include Connection
-  include Configuration
-  @has_changes: bool
-  @name: untyped
-  @database_type: String
-  @configuration: untyped
-  @connection: untyped
-  @validations_cache_exists: untyped
-  @structure_cache_exists: untyped
-  @keys_and_unique_constraints_cache_exists: untyped
 
-  attr_reader database: untyped
-  attr_reader username: untyped
-  attr_reader password: untyped
-  attr_reader host: untyped
-  attr_reader port: untyped
-  def initialize: (untyped name) -> void
-  def has_changes?: -> bool
-  def reset!: (?bool force) -> bool?
-
-  module Configuration
-    @name: untyped
-    @database_type: String
-    @configuration: untyped
-
-    def load_configuration_for: (:postgres database_type, untyped name) -> untyped
-    def optional_configuration_value: (:password key) -> untyped
-    def require_configuration_value: (:database | :host | :port | :username key) -> untyped
-    def load_configuration_file: -> untyped
-
-    class MissingConfigurationError < StandardError
-    end
-
-    class ConfigurationNotLoadedError < StandardError
-    end
-
-    class MissingRequiredNameError < StandardError
-    end
-
-    class MissingRequiredDatabaseTypeError < StandardError
-    end
-  end
-
-  module Connection
-    @connection: untyped
-    @host: bot
-    @port: bot
-    @username: bot
-    @password: bot
-    @database: bot
-
-    def connection: -> untyped
-
-    class ConnectionFailedError < StandardError
-    end
-  end
-
-  module Schemas
-    @has_changes: bool
-    @database: bot
-    @host: bot
-
-    def assert_database_empty!: -> nil
-    def create_schema: (untyped schema_name) -> bool
-    def get_schema_names: -> untyped
-    def delete_all_schemas: (?cascade: bool) -> bool
-  end
-
-  module Tables
-    @has_changes: bool
-
-    def create_table: (untyped schema_name, untyped table_name) -> bool
-    def get_table_names: (untyped schema_name) -> untyped
-    def delete_tables: (untyped schema_name) -> untyped
-  end
-
-  module Columns
-    @has_changes: bool
-
-    def create_column: (untyped schema_name, untyped table_name, untyped column_name, untyped `type`) -> bool
-  end
-
-  module Validations
-    @has_changes: bool
-
-    def create_validation: (untyped schema_name, untyped table_name, untyped validation_name, untyped check_clause) -> bool
-  end
-
-  module ForeignKeys
-    @has_changes: bool
-
-    def create_foreign_key: (untyped schema_name, untyped table_name, untyped column_names, untyped foreign_schema_name, untyped foreign_table_name, untyped foreign_column_names, untyped foreign_key_name) -> bool
-  end
-
-  module UniqueConstraints
-    @has_changes: bool
-
-    def create_unique_constraint: (untyped schema_name, untyped table_name, untyped column_names, untyped constraint_key_name) -> bool
-  end
-
-  module PrimaryKeys
-    @has_changes: bool
-
-    def create_primary_key: (untyped schema_name, untyped table_name, untyped column_names) -> bool
-  end
-
-  module Indexes
-    @has_changes: bool
-
-    def create_index: (untyped schema_name, untyped table_name, untyped column_names, untyped index_name, untyped `type`, untyped deferrable, untyped initially_deferred) -> bool
-  end
+  attr_reader database: String
+  attr_reader username: String
+  attr_reader password: nil | String
+  attr_reader host: String
+  attr_reader port: Integer
+  def initialize: (database: String, host: String, port: Integer, username: String, ?password: String | nil) -> void
 
 end

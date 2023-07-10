@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Reset
+    @methods_used: Hash[Symbol, true]
+
+    def reset!: (?false force) -> void
+  end
+end

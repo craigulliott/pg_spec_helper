@@ -1,0 +1,20 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module TrackChanges
+    TRACKED_METHOD_CALLS: [Symbol]
+    @methods_used: Hash[Symbol, true]
+
+    def has_changes?: (?Symbol | nil method_name) -> bool
+
+    private
+    def track_change: (Symbol method_name) -> void
+    def methods_used: -> Hash[Symbol, true]
+    def assert_trackable_method_name!: (Symbol method_name) -> true
+    def install_trackable_methods: -> void
+
+    class UntrackableMethodNameError < StandardError
+    end
+  end
+end

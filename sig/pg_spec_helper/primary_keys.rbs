@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module PrimaryKeys
+    def create_primary_key: (Symbol schema_name, Symbol table_name, Symbol column_names, Symbol primary_key_name) -> void
+    def get_primary_key_name: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
+  end
+end

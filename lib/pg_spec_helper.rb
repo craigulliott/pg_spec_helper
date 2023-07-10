@@ -43,14 +43,14 @@ class PGSpecHelper
 
   attr_reader :database, :username, :password, :host, :port
 
-  def initialize database: nil, host: nil, port: nil, username: nil, password: nil
+  def initialize database:, username:, host:, port:, password: nil
     # assert that all required options are present
     raise MissingRequiredOptionError, "database is required" if database.nil?
     raise MissingRequiredOptionError, "host is required" if host.nil?
     raise MissingRequiredOptionError, "username is required" if username.nil?
 
     # record the configuration
-    @database = database.to_sym
+    @database = database
     @host = host
     @port = port || 5432
     @username = username

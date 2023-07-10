@@ -5,8 +5,6 @@ class PGSpecHelper
     class UntrackableMethodNameError < StandardError
     end
 
-    attr_reader :methods_used
-
     # this is a list of methods that have their useage tracked, this
     # is used to determine what actions need to be taken when calling
     # reset! between tests

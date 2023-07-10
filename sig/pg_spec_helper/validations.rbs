@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Validations
+    def create_validation: (Symbol schema_name, Symbol table_name, Symbol validation_name, String check_clause) -> void
+    def get_validation_names: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
+  end
+end

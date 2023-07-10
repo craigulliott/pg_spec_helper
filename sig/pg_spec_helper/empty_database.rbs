@@ -1,0 +1,12 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module EmptyDatabase
+
+    def assert_database_empty!: -> true
+
+    class DatabaseNotEmptyError < StandardError
+    end
+  end
+end

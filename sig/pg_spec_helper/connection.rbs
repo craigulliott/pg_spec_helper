@@ -1,0 +1,18 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Connection
+    @connection: PG::Connection
+    @host: String
+    @port: Integer
+    @username: String
+    @password: String | nil
+    @database: String
+
+    def connection: -> PG::Connection
+
+    class ConnectionFailedError < StandardError
+    end
+  end
+end

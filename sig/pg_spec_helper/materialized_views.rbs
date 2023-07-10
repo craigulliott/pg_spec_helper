@@ -1,0 +1,19 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module MaterializedViews
+    @materialized_views: Hash[untyped, Hash[untyped, untyped]]
+
+    def track_materialized_view: (Symbol schema_name, Symbol materialized_view_name, Array[Symbol] refresh_after) -> void
+
+    private
+    def materialized_view_exists?: (Symbol schema_name, Symbol materialized_view_name) -> bool
+    def refresh_all_materialized_views: -> void
+    def refresh_materialized_view: (Symbol schema_name, Symbol materialized_view_name) -> void
+    def assert_materialized_view_tracked!: (Symbol schema_name, Symbol materialized_view_name) -> true
+
+    class MaterializedViewNotTrackedError < StandardError
+    end
+  end
+end
