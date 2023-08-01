@@ -16,10 +16,13 @@ require "pg_spec_helper/foreign_keys"
 require "pg_spec_helper/unique_constraints"
 require "pg_spec_helper/primary_keys"
 require "pg_spec_helper/indexes"
+require "pg_spec_helper/models"
 require "pg_spec_helper/materialized_views"
 require "pg_spec_helper/reset"
 require "pg_spec_helper/empty_database"
 require "pg_spec_helper/track_changes"
+
+require "pg_spec_helper/table_executer"
 
 class PGSpecHelper
   class MissingRequiredOptionError < StandardError
@@ -36,6 +39,7 @@ class PGSpecHelper
   include UniqueConstraints
   include PrimaryKeys
   include Indexes
+  include Models
   include MaterializedViews
   include Reset
   include EmptyDatabase

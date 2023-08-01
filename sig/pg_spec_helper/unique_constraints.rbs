@@ -3,7 +3,7 @@
 # Classes
 class PGSpecHelper
   module UniqueConstraints
-    def create_unique_constraint: (Symbol schema_name, Symbol table_name, Symbol column_names, Symbol constraint_key_name) -> void
+    def create_unique_constraint: (Symbol schema_name, Symbol table_name, Array[Symbol] column_names, Symbol constraint_key_name) -> void
     def get_unique_constraint_names: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
   end
 end

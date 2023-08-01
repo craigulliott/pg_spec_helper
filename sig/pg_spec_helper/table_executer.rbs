@@ -1,0 +1,23 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  class TableExecuter
+    @pg_spec_helper: PGSpecHelper
+    @schema_name: Symbol
+    @table_name: Symbol
+
+    def initialize: (PGSpecHelper pg_spec_helper, Symbol schema_name, Symbol table_name) -> void
+    def add_column: (Symbol column_name, Symbol `type`, ?true null) -> void
+    def add_foreign_key: (Array[Symbol] column_names, Symbol foreign_schema_name, Symbol foreign_table_name, Array[Symbol] foreign_column_names, Symbol foreign_key_name) -> void
+    def add_index: (Array[Symbol] column_names, Symbol index_name, ?false unique) -> void
+    def add_primary_key: (Array[Symbol] column_names, Symbol primary_key_name) -> void
+    def add_unique_constraint: (Array[Symbol] column_names, Symbol constraint_key_name) -> void
+    def add_validation: (Symbol validation_name, String check_clause) -> void
+
+    # overriding this method because steep doesn't
+    # correctly infer that a block is being passed to this method
+    def instance_exec: () -> void
+
+  end
+end

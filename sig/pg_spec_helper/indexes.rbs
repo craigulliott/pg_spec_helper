@@ -3,7 +3,7 @@
 # Classes
 class PGSpecHelper
   module Indexes
-    def create_index: (Symbol schema_name, Symbol table_name, Symbol column_names, Symbol index_name) -> void
+    def create_index: (Symbol schema_name, Symbol table_name, Array[Symbol] column_names, Symbol index_name) -> void
     def get_index_names: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
   end
 end

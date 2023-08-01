@@ -3,7 +3,8 @@
 # Classes
 class PGSpecHelper
   module Columns
-    def create_column: (Symbol schema_name, Symbol table_name, Symbol column_name, untyped `type`) -> void
+    def create_column: (Symbol schema_name, Symbol table_name, Symbol column_name, untyped `type`, ?bool null) -> void
+    def is_column_nullable: (Symbol schema_name, Symbol table_name, Symbol column_name) -> bool
     def get_column_names: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
   end
 end
