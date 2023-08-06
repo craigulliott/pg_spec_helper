@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.7.0...v1.8.0) (2023-08-06)
+
+
+### Features
+
+* using function_* instead of routine_* when dealing with functions, because routine_* implies these could be procedures too ([9c5f0c2](https://github.com/craigulliott/pg_spec_helper/commit/9c5f0c267f377731ed82d764a4f866de0b4525ee))
+
+
+### Bug Fixes
+
+* adding missing error class ([1810743](https://github.com/craigulliott/pg_spec_helper/commit/181074326fbf63eb27760486b4f18e1ea11c86b9))
+
 ## [1.7.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.6.0...v1.7.0) (2023-08-06)
 
 
