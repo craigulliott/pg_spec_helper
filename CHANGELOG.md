@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.5.0...v1.6.0) (2023-08-06)
+
+
+### Features
+
+* added support for triggers and functions ([f89bf5e](https://github.com/craigulliott/pg_spec_helper/commit/f89bf5e3afa6fc411e9d1f16cb62db74fc8dc987))
+
 ## [1.5.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.4.0...v1.5.0) (2023-08-01)
 
 

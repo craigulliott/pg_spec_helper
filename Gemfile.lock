@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pg_spec_helper (1.5.0)
+    pg_spec_helper (1.6.0)
       pg (~> 1.5)
 
 GEM
