@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/craigulliott/pg_spec_helper/compare/v1.7.0...v1.7.1) (2023-08-06)
+
+
+### Bug Fixes
+
+* adding missing error class ([1810743](https://github.com/craigulliott/pg_spec_helper/commit/181074326fbf63eb27760486b4f18e1ea11c86b9))
+
 ## [1.7.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.6.0...v1.7.0) (2023-08-06)
 
 
