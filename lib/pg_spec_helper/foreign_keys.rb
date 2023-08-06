@@ -7,7 +7,7 @@ class PGSpecHelper
       column_names_sql = column_names.map { |n| sanitize_name n }.join(", ")
       foreign_column_names_sql = foreign_column_names.map { |n| sanitize_name n }.join(", ")
       # add the foreign key
-      connection.exec(<<-SQL)
+      connection.exec(<<~SQL)
         ALTER TABLE #{sanitize_name schema_name}.#{sanitize_name table_name}
           ADD CONSTRAINT #{sanitize_name foreign_key_name}
           FOREIGN KEY (#{column_names_sql})
@@ -17,7 +17,7 @@ class PGSpecHelper
 
     # returns a list of foreign keys for the provided table
     def get_foreign_key_names schema_name, table_name
-      rows = connection.exec_params(<<-SQL, [schema_name.to_s, table_name.to_s])
+      rows = connection.exec_params(<<~SQL, [schema_name.to_s, table_name.to_s])
         SELECT constraint_name
         FROM information_schema.table_constraints
         WHERE table_schema = $1

@@ -4,7 +4,7 @@ class PGSpecHelper
   module Functions
     # create a function
     def create_function schema_name, function_name, function_definition
-      connection.exec <<-SQL
+      connection.exec <<~SQL
         CREATE FUNCTION #{schema_name}.#{function_name}() returns trigger language plpgsql AS $$
         BEGIN
           #{function_definition};
@@ -16,7 +16,7 @@ class PGSpecHelper
     # return a list of function names for the provided schema
     def get_function_names schema_name
       # get the function names
-      rows = connection.exec(<<-SQL, [schema_name.to_s])
+      rows = connection.exec(<<~SQL, [schema_name.to_s])
         SELECT
           routine_name
         FROM

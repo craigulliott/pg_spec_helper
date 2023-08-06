@@ -50,7 +50,7 @@ class PGSpecHelper
       end
       temp_tables_sql = temp_tables.any? ? "REFERENCING #{temp_tables.join(" ")}" : ""
 
-      connection.exec <<-SQL
+      connection.exec <<~SQL
         -- trigger names only need to be unique for this table
         CREATE TRIGGER #{name}
           #{timing_sql} ON #{schema_name}.#{table_name} #{temp_tables_sql}
@@ -63,7 +63,7 @@ class PGSpecHelper
     # return a list of trigger names for the provided table
     def get_trigger_names schema_name, table_name
       # get the trigger names
-      rows = connection.exec(<<-SQL, [schema_name.to_s, table_name.to_s])
+      rows = connection.exec(<<~SQL, [schema_name.to_s, table_name.to_s])
         SELECT
         trigger_name
         FROM

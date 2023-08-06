@@ -4,7 +4,7 @@ class PGSpecHelper
   module Schemas
     # create a new schema in the database
     def create_schema schema_name
-      connection.exec(<<-SQL)
+      connection.exec(<<~SQL)
         CREATE SCHEMA #{connection.quote_ident schema_name.to_s};
       SQL
     end
@@ -13,7 +13,7 @@ class PGSpecHelper
     def get_schema_names
       ignored_schemas_sql = ignored_schemas.map { |n| sanitize_name n }.join("', '")
       # return a list of the schema names from the database
-      results = connection.exec(<<-SQL)
+      results = connection.exec(<<~SQL)
         SELECT schema_name
           FROM information_schema.schemata
         WHERE
@@ -28,7 +28,7 @@ class PGSpecHelper
     def delete_all_schemas
       # delete all schemas except public
       get_schema_names.reject { |schema_name| schema_name == :public }.each do |schema_name|
-        connection.exec(<<-SQL)
+        connection.exec(<<~SQL)
           -- temporarily set the client_min_messages to WARNING to
           -- suppress the NOTICE messages about cascading deletes
           SET client_min_messages TO WARNING;

@@ -4,7 +4,7 @@ class PGSpecHelper
   module Tables
     # create a new table in the provided schema
     def create_table schema_name, table_name
-      connection.exec(<<-SQL)
+      connection.exec(<<~SQL)
         CREATE TABLE #{sanitize_name schema_name.to_s}.#{sanitize_name table_name.to_s}(
           -- tables are created empty, and have columns added to them later
         );
@@ -13,7 +13,7 @@ class PGSpecHelper
 
     # return an array of table names for the provided schema
     def get_table_names schema_name
-      rows = connection.exec_params(<<-SQL, [schema_name.to_s])
+      rows = connection.exec_params(<<~SQL, [schema_name.to_s])
         SELECT table_name FROM information_schema.tables
           WHERE
             table_schema = $1
@@ -26,7 +26,7 @@ class PGSpecHelper
     # delete all tables in the provided schema
     def delete_tables schema_name
       get_table_names(schema_name).each do |table_name|
-        connection.exec(<<-SQL)
+        connection.exec(<<~SQL)
           -- temporarily set the client_min_messages to WARNING to
           -- suppress the NOTICE messages about cascading deletes
           SET client_min_messages TO WARNING;

@@ -8,11 +8,11 @@ RSpec.describe PGSpecHelper do
         pg_spec_helper.create_schema :my_schema
         pg_spec_helper.create_table :my_schema, :my_table
         pg_spec_helper.create_column :my_schema, :my_table, :my_column, :integer
-        pg_spec_helper.connection.exec <<-SQL
+        pg_spec_helper.connection.exec <<~SQL
           INSERT INTO my_schema.my_table (my_column)
             VALUES (1), (2), (3)
         SQL
-        pg_spec_helper.connection.exec <<-SQL
+        pg_spec_helper.connection.exec <<~SQL
           CREATE MATERIALIZED VIEW my_schema.my_materialized_view
             AS
               SELECT my_column FROM my_schema.my_table
@@ -79,7 +79,7 @@ RSpec.describe PGSpecHelper do
             expect(records_before).to eq("3")
 
             # empty the table and then refresh the materialized view
-            pg_spec_helper.connection.exec <<-SQL
+            pg_spec_helper.connection.exec <<~SQL
               TRUNCATE my_schema.my_table
             SQL
             pg_spec_helper.send :refresh_all_materialized_views
@@ -109,7 +109,7 @@ RSpec.describe PGSpecHelper do
             expect(records_before).to eq("3")
 
             # empty the table and then refresh the materialized view
-            pg_spec_helper.connection.exec <<-SQL
+            pg_spec_helper.connection.exec <<~SQL
               TRUNCATE my_schema.my_table
             SQL
             pg_spec_helper.send :refresh_all_materialized_views
@@ -151,7 +151,7 @@ RSpec.describe PGSpecHelper do
             expect(records_before).to eq("3")
 
             # empty the table
-            pg_spec_helper.connection.exec <<-SQL
+            pg_spec_helper.connection.exec <<~SQL
               TRUNCATE my_schema.my_table
             SQL
 
