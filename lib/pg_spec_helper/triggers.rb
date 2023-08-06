@@ -53,7 +53,7 @@ class PGSpecHelper
           #{timing_sql} ON #{schema_name}.#{table_name} #{temp_tables_sql}
             FOR EACH #{action_orientation}
               #{condition_sql}
-              EXECUTE PROCEDURE #{routine_schema}.#{routine_name}();
+              EXECUTE FUNCTION #{routine_schema}.#{routine_name}();
       SQL
     end
 
