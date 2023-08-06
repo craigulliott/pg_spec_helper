@@ -32,12 +32,12 @@ class PGSpecHelper
         raise UnexpectedActionOrientationError, action_orientation
       end
 
-      unless [:before, :after].include? action_timing
+      unless [:before, :after, :instead_of].include? action_timing
         raise UnexpectedActionTimingError, action_timing
       end
 
-      # BEFORE INSERT / AFTER INSERT / BEFORE UPDATE / AFTER UPDATE / BEFORE DELETE / AFTER DELETE
-      timing_sql = "#{action_timing} #{event_manipulation}".upcase
+      # "INSTEAD OF/BEFORE/AFTER" "INSERT/UPDATE/DELETE"
+      timing_sql = "#{action_timing.to_s.sub("_", " ")} #{event_manipulation}".upcase
 
       condition_sql = action_condition.nil? ? "" : "WHEN (#{action_condition})"
 
