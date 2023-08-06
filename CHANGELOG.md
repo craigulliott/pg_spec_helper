@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.3](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.2...v1.8.3) (2023-08-06)
+
+
+### Bug Fixes
+
+* stripping whitespace off the end of the method definition ([df63ae9](https://github.com/craigulliott/pg_spec_helper/commit/df63ae96faf090b98220a9e64d87dbaaf89135d0))
+
 ## [1.8.2](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.1...v1.8.2) (2023-08-06)
 
 
