@@ -16,13 +16,13 @@ RSpec.describe PGSpecHelper do
     describe :create_trigger do
       it "creates a trigger without raising an error" do
         expect {
-          pg_spec_helper.create_trigger :my_schema, :my_table, :my_trigger, action_timing: :before, event_manipulation: :insert, action_condition: "NEW.my_column < 0", action_orientation: :row, routine_schema: :my_schema, routine_name: :my_function
+          pg_spec_helper.create_trigger :my_schema, :my_table, :my_trigger, action_timing: :before, event_manipulation: :insert, action_condition: "NEW.my_column < 0", action_orientation: :row, function_schema: :my_schema, function_name: :my_function
         }.to_not raise_error
       end
 
       it "creates a trigger with temp tables without raising an error" do
         expect {
-          pg_spec_helper.create_trigger :my_schema, :my_table, :my_trigger, action_timing: :after, event_manipulation: :update, action_condition: "NEW.my_column < 0", action_orientation: :row, routine_schema: :my_schema, routine_name: :my_function, action_reference_old_table: :old_rows, action_reference_new_table: :new_rows
+          pg_spec_helper.create_trigger :my_schema, :my_table, :my_trigger, action_timing: :after, event_manipulation: :update, action_condition: "NEW.my_column < 0", action_orientation: :row, function_schema: :my_schema, function_name: :my_function, action_reference_old_table: :old_rows, action_reference_new_table: :new_rows
         }.to_not raise_error
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe PGSpecHelper do
 
       describe "after a trigger has been created" do
         before(:each) do
-          pg_spec_helper.create_trigger :my_schema, :my_table, :my_trigger, action_timing: :before, event_manipulation: :insert, action_condition: "NEW.my_column < 0", action_orientation: :row, routine_schema: :my_schema, routine_name: :my_function
+          pg_spec_helper.create_trigger :my_schema, :my_table, :my_trigger, action_timing: :before, event_manipulation: :insert, action_condition: "NEW.my_column < 0", action_orientation: :row, function_schema: :my_schema, function_name: :my_function
         end
 
         it "returns a list of trigger names" do
