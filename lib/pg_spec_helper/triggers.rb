@@ -16,7 +16,7 @@ class PGSpecHelper
     end
 
     # create a postgres trigger
-    def create_trigger schema_name, table_name, name, action_timing:, event_manipulation:, action_orientation:, routine_schema:, routine_name:, action_condition: nil, action_reference_old_table: nil, action_reference_new_table: nil
+    def create_trigger schema_name, table_name, name, action_timing:, event_manipulation:, action_orientation:, function_schema:, function_name:, action_condition: nil, action_reference_old_table: nil, action_reference_new_table: nil
       unless [:insert, :delete, :update].include? event_manipulation
         raise UnexpectedEventManipulationError, event_manipulation
       end
@@ -53,7 +53,7 @@ class PGSpecHelper
           #{timing_sql} ON #{schema_name}.#{table_name} #{temp_tables_sql}
             FOR EACH #{action_orientation}
               #{condition_sql}
-              EXECUTE FUNCTION #{routine_schema}.#{routine_name}();
+              EXECUTE FUNCTION #{function_schema}.#{function_name}();
       SQL
     end
 
