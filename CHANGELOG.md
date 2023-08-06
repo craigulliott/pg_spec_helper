@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.6.0...v1.7.0) (2023-08-06)
+
+
+### Features
+
+* adding support for "instead of" in triggers ([488b4ab](https://github.com/craigulliott/pg_spec_helper/commit/488b4ab5fb458db2c7e2f60395b12dcfa9559459))
+
 ## [1.6.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.5.0...v1.6.0) (2023-08-06)
 
 
