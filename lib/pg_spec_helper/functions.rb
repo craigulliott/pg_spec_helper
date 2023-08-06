@@ -4,11 +4,11 @@ class PGSpecHelper
   module Functions
     # create a function
     def create_function schema_name, function_name, function_definition
-      connection.exec <<~SQL.strip
-        CREATE FUNCTION #{schema_name}.#{function_name}() returns trigger language plpgsql AS $$
-        BEGIN #{function_definition.strip};
+      connection.exec <<~SQL
+        CREATE FUNCTION #{schema_name}.#{function_name}() returns trigger language plpgsql AS
+        $$BEGIN #{function_definition.strip};
         RETURN NEW;
-        END $$;
+        END$$;
       SQL
     end
 
