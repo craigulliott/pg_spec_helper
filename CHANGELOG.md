@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2](https://github.com/craigulliott/pg_spec_helper/compare/v1.7.1...v1.7.2) (2023-08-06)
+
+
+### Bug Fixes
+
+* using function_* instead of routine_* when dealing with functions, because routine_* implies these could be procedures too ([9c23567](https://github.com/craigulliott/pg_spec_helper/commit/9c2356766ce858d432d1ea32214de767ba6365f5))
+
 ## [1.7.1](https://github.com/craigulliott/pg_spec_helper/compare/v1.7.0...v1.7.1) (2023-08-06)
 
 
