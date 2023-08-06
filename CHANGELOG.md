@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.0...v1.8.1) (2023-08-06)
+
+
+### Bug Fixes
+
+* removing unnecessary line break and white space from function definition ([20f8c53](https://github.com/craigulliott/pg_spec_helper/commit/20f8c539d308bc88fbc04428064febfbbc2c0970))
+
 ## [1.8.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.7.0...v1.8.0) (2023-08-06)
 
 
