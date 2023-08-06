@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.4.0...v1.5.0) (2023-08-01)
+
+
+### Features
+
+* adding a new create_model method which yields a block to expose a DSL for easily working with the table structure ([dc28d5e](https://github.com/craigulliott/pg_spec_helper/commit/dc28d5ef599d8306564aa7c29d2220fb22ee6dd6))
+
 ## [1.4.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.3.0...v1.4.0) (2023-07-10)
 
 
