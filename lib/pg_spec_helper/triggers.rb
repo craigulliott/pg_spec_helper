@@ -6,16 +6,13 @@ class PGSpecHelper
     class UnexpectedEventManipulationError < StandardError
     end
 
-    class UnexpectedActionOrderError < StandardError
-    end
-
-    class UnexpectedActionStatementError < StandardError
-    end
-
     class UnexpectedActionOrientationError < StandardError
     end
 
     class UnexpectedActionTimingError < StandardError
+    end
+
+    class UnexpectedConditionsError < StandardError
     end
 
     # create a postgres trigger
@@ -25,7 +22,7 @@ class PGSpecHelper
       end
 
       unless action_condition.nil? || action_condition.is_a?(String)
-        raise ExpectedStringError, action_condition
+        raise UnexpectedConditionsError, "expected String but got `#{action_condition}`"
       end
 
       unless [:row, :statement].include? action_orientation
