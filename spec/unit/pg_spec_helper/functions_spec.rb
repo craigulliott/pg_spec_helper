@@ -11,8 +11,10 @@ RSpec.describe PGSpecHelper do
       it "creates a function without raising an error" do
         expect {
           pg_spec_helper.create_function :my_schema, :my_function, <<~SQL
-            -- an example function
-            NEW.foo = 'bar'
+            BEGIN
+              NEW.foo = 'bar';
+              RETURN NEW;
+            END;
           SQL
         }.to_not raise_error
       end
@@ -26,8 +28,10 @@ RSpec.describe PGSpecHelper do
       describe "after a function has been created" do
         before(:each) do
           pg_spec_helper.create_function :my_schema, :my_function, <<~SQL
-            -- an example function
-            NEW.foo = 'bar'
+            BEGIN
+              NEW.foo = 'bar';
+              RETURN NEW;
+            END;
           SQL
         end
 

@@ -8,8 +8,10 @@ RSpec.describe PGSpecHelper do
       pg_spec_helper.create_table :my_schema, :my_table
       pg_spec_helper.create_column :my_schema, :my_table, :my_column, :integer
       pg_spec_helper.create_function :my_schema, :my_function, <<~SQL
-        -- an example function
-        NEW.my_column = 0
+        BEGIN
+          NEW.my_column = 0;
+          RETURN NEW;
+        END;
       SQL
     end
 
