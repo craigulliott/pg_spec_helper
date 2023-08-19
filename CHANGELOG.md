@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.4](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.3...v1.8.4) (2023-08-18)
+
+
+### Bug Fixes
+
+* function definitions no longer presume/add their own BEGIN and END, which now allows providing custom SQL such as DEFINE statements ([2ec7d00](https://github.com/craigulliott/pg_spec_helper/commit/2ec7d00bd2ad539860384981586b0bcee98d56a7))
+
 ## [1.8.3](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.2...v1.8.3) (2023-08-06)
 
 
