@@ -5,7 +5,7 @@ class PGSpecHelper
     # create a new table in the provided schema
     def create_table schema_name, table_name
       connection.exec(<<~SQL)
-        CREATE TABLE #{sanitize_name schema_name.to_s}.#{sanitize_name table_name.to_s}(
+        CREATE TABLE #{schema_name}.#{table_name}(
           -- tables are created empty, and have columns added to them later
         );
       SQL
@@ -30,7 +30,7 @@ class PGSpecHelper
           -- temporarily set the client_min_messages to WARNING to
           -- suppress the NOTICE messages about cascading deletes
           SET client_min_messages TO WARNING;
-          DROP TABLE #{sanitize_name schema_name.to_s}.#{sanitize_name table_name.to_s} CASCADE;
+          DROP TABLE #{schema_name}.#{table_name} CASCADE;
           SET client_min_messages TO NOTICE;
         SQL
       end

@@ -24,6 +24,14 @@ RSpec.describe PGSpecHelper do
 
         expect(pg_spec_helper.is_column_nullable(:my_schema, :my_table, :my_column)).to be false
       end
+
+      it "creates an array column" do
+        expect {
+          pg_spec_helper.create_column :my_schema, :my_table, :my_column, :"integer[]", false
+        }.to_not raise_error
+
+        expect(pg_spec_helper.get_column_names(:my_schema, :my_table)).to eql [:my_column]
+      end
     end
 
     describe :is_column_nullable do

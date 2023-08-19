@@ -11,7 +11,7 @@ class PGSpecHelper
 
     # return a list of the schema names in the database
     def get_schema_names
-      ignored_schemas_sql = ignored_schemas.map { |n| sanitize_name n }.join("', '")
+      ignored_schemas_sql = ignored_schemas.join("', '")
       # return a list of the schema names from the database
       results = connection.exec(<<~SQL)
         SELECT schema_name

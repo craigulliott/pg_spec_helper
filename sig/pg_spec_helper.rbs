@@ -19,7 +19,6 @@ class PGSpecHelper
   include Tables
   include Schemas
   include IgnoredSchemas
-  include Sanitize
   include Connection
 
   attr_reader database: String

@@ -6,7 +6,6 @@ require "pg"
 require "pg_spec_helper/version"
 
 require "pg_spec_helper/connection"
-require "pg_spec_helper/sanitize"
 require "pg_spec_helper/ignored_schemas"
 require "pg_spec_helper/schemas"
 require "pg_spec_helper/tables"
@@ -31,7 +30,6 @@ class PGSpecHelper
   end
 
   include Connection
-  include Sanitize
   include IgnoredSchemas
   include Schemas
   include Tables

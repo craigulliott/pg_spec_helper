@@ -71,7 +71,7 @@ class PGSpecHelper
       # time the materialized view is found to exist, at which point the method
       # will always return true
       @materialized_views[schema_name.to_sym][materialized_view_name.to_sym][:exists] ||= connection.exec(<<~SQL).count > 0
-        SELECT TRUE AS exists FROM pg_matviews WHERE schemaname = '#{sanitize_name schema_name}' AND matviewname = '#{sanitize_name materialized_view_name}';
+        SELECT TRUE AS exists FROM pg_matviews WHERE schemaname = '#{schema_name}' AND matviewname = '#{materialized_view_name}';
       SQL
     end
 
