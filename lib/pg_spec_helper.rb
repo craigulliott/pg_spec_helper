@@ -17,6 +17,8 @@ require "pg_spec_helper/primary_keys"
 require "pg_spec_helper/indexes"
 require "pg_spec_helper/triggers"
 require "pg_spec_helper/functions"
+require "pg_spec_helper/enums"
+require "pg_spec_helper/extensions"
 require "pg_spec_helper/models"
 require "pg_spec_helper/materialized_views"
 require "pg_spec_helper/reset"
@@ -41,6 +43,8 @@ class PGSpecHelper
   include Indexes
   include Triggers
   include Functions
+  include Extensions
+  include Enums
   include Models
   include MaterializedViews
   include Reset

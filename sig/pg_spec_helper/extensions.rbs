@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Extensions
+    def create_extension: (Symbol extension_name) -> void
+    def drop_extension: (Symbol extension_name) -> void
+    def get_extension_names: -> Array[Symbol]
+  end
+end

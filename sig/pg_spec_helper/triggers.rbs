@@ -1,0 +1,21 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Triggers
+    def create_trigger: (Symbol schema_name, Symbol table_name, Symbol name, action_timing: Symbol, event_manipulation: Symbol, action_orientation: Symbol, function_schema: Symbol, function_name: Symbol, ?action_condition: String?, ?action_reference_old_table: Symbol?, ?action_reference_new_table: Symbol?) -> untyped
+    def get_trigger_names: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
+
+    class UnexpectedEventManipulationError < StandardError
+    end
+
+    class UnexpectedActionOrientationError < StandardError
+    end
+
+    class UnexpectedActionTimingError < StandardError
+    end
+
+    class UnexpectedConditionsError < StandardError
+    end
+  end
+end

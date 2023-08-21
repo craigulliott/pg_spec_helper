@@ -6,20 +6,25 @@ class PGSpecHelper
   end
 
   VERSION: String
-  include TrackChanges
-  include EmptyDatabase
-  include Reset
-  include MaterializedViews
-  include Indexes
-  include PrimaryKeys
-  include UniqueConstraints
-  include ForeignKeys
-  include Validations
-  include Columns
-  include Tables
-  include Schemas
-  include IgnoredSchemas
   include Connection
+  include IgnoredSchemas
+  include Schemas
+  include Tables
+  include Columns
+  include Validations
+  include ForeignKeys
+  include UniqueConstraints
+  include PrimaryKeys
+  include Indexes
+  include Triggers
+  include Functions
+  include Extensions
+  include Enums
+  include Models
+  include MaterializedViews
+  include Reset
+  include EmptyDatabase
+  include TrackChanges
 
   attr_reader database: String
   attr_reader username: String

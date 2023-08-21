@@ -1,0 +1,8 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Models
+    def create_model: (Symbol schema_name, Symbol table_name) -> void
+  end
+end

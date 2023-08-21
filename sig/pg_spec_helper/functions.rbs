@@ -1,0 +1,9 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Functions
+    def create_function: (Symbol schema_name, Symbol function_name, String function_definition) -> void
+    def get_function_names: (Symbol schema_name) -> Array[Symbol]
+  end
+end

@@ -1,0 +1,10 @@
+# TypeProf 0.21.7
+
+# Classes
+class PGSpecHelper
+  module Enums
+    def create_enum: (Symbol schema_name, Symbol enum_name, Array[Symbol] values) -> void
+    def drop_enum: (Symbol schema_name, Symbol enum_name) -> void
+    def get_enum_names: (Symbol schema_name) -> Array[Symbol]
+  end
+end
