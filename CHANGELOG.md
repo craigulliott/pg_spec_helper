@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.5...v1.9.0) (2023-08-21)
+
+
+### Features
+
+* added support for enums and extensions ([b22f662](https://github.com/craigulliott/pg_spec_helper/commit/b22f662cad22c1220ac6f4bc029ca534348a4bea))
+
 ## [1.8.5](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.4...v1.8.5) (2023-08-19)
 
 
