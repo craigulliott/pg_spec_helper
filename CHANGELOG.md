@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.5](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.4...v1.8.5) (2023-08-19)
+
+
+### Bug Fixes
+
+* removing the sanitization of sql data (it is useless in this gem, and gets in the way of testing some things, which defeats the point of this gem) ([fe6af3b](https://github.com/craigulliott/pg_spec_helper/commit/fe6af3bd4443b140a3136d43f1da61315de4d761))
+
 ## [1.8.4](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.3...v1.8.4) (2023-08-18)
 
 
