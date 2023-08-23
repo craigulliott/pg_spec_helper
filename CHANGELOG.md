@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.2](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.1...v1.9.2) (2023-08-23)
+
+
+### Bug Fixes
+
+* actually deleting and recreating the public schema as part of the reset, this ensures we remove all functions and enums too ([5dd70c9](https://github.com/craigulliott/pg_spec_helper/commit/5dd70c93eb3754a3e84161dc571e3a39b814f34c))
+
 ## [1.9.1](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.0...v1.9.1) (2023-08-23)
 
 
