@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.0...v1.9.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* track use of functions, triggers and enums so we erase the database correctly between tests ([c705a0d](https://github.com/craigulliott/pg_spec_helper/commit/c705a0defe011c715de18c10f16861a02308122b))
+
 ## [1.9.0](https://github.com/craigulliott/pg_spec_helper/compare/v1.8.5...v1.9.0) (2023-08-21)
 
 
