@@ -26,8 +26,8 @@ class PGSpecHelper
 
     # delete all schemas in the database
     def delete_all_schemas
-      # delete all schemas except public
-      get_schema_names.reject { |schema_name| schema_name == :public }.each do |schema_name|
+      # delete all schemas including public
+      get_schema_names.each do |schema_name|
         connection.exec(<<~SQL)
           -- temporarily set the client_min_messages to WARNING to
           -- suppress the NOTICE messages about cascading deletes
@@ -36,8 +36,8 @@ class PGSpecHelper
           SET client_min_messages TO NOTICE;
         SQL
       end
-      # delete all the tables from within the public schema
-      delete_tables :public
+      # recreate the public schema
+      create_schema :public
     end
 
     def schema_exists? schema_name
