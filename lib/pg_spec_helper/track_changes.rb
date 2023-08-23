@@ -18,7 +18,10 @@ class PGSpecHelper
       :create_index,
       :create_primary_key,
       :create_unique_constraint,
-      :create_validation
+      :create_validation,
+      :create_function,
+      :create_trigger,
+      :create_enum
     ]
 
     # returns true if any changes have been made to the database structure
@@ -63,11 +66,11 @@ class PGSpecHelper
         # keep a pointer to the original method
         original_method = self.class.instance_method(method_name)
         # ovveride the original method
-        self.class.define_method(method_name) do |*args|
+        self.class.define_method(method_name) do |*args, **kwargs|
           # note that this method was called
           track_change method_name
           # call the original method
-          original_method.bind_call(self, *args)
+          original_method.bind_call(self, *args, **kwargs)
           # do any materialized views need to be refreshed?
           refresh_materialized_views_by_method method_name
         end
