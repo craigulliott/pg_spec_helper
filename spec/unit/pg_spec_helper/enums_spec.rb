@@ -30,5 +30,24 @@ RSpec.describe PGSpecHelper do
         end
       end
     end
+
+    describe :delete_enums do
+      it "does not raise an error" do
+        expect {
+          pg_spec_helper.delete_enums :my_schema
+        }.to_not raise_error
+      end
+
+      describe "after a enum has been created" do
+        before(:each) do
+          pg_spec_helper.create_enum :my_schema, :my_enum, ["foo", "bar"]
+        end
+
+        it "removes all enums" do
+          pg_spec_helper.delete_enums :my_schema
+          expect(pg_spec_helper.get_enum_names(:my_schema)).to eql []
+        end
+      end
+    end
   end
 end

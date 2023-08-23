@@ -23,5 +23,14 @@ class PGSpecHelper
       SQL
       rows.map { |r| r["routine_name"].to_sym }
     end
+
+    # delete all functions in the provided schema
+    def delete_functions schema_name
+      get_function_names(schema_name).each do |function_name|
+        connection.exec(<<~SQL)
+          DROP FUNCTION #{schema_name}.#{function_name};
+        SQL
+      end
+    end
   end
 end

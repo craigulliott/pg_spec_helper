@@ -40,5 +40,29 @@ RSpec.describe PGSpecHelper do
         end
       end
     end
+
+    describe :delete_functions do
+      it "does not raise an error" do
+        expect {
+          pg_spec_helper.delete_functions :my_schema
+        }.to_not raise_error
+      end
+
+      describe "after a function has been created" do
+        before(:each) do
+          pg_spec_helper.create_function :my_schema, :my_function, <<~SQL
+            BEGIN
+              NEW.foo = 'bar';
+              RETURN NEW;
+            END;
+          SQL
+        end
+
+        it "removes all functions" do
+          pg_spec_helper.delete_functions :my_schema
+          expect(pg_spec_helper.get_function_names(:my_schema)).to eql []
+        end
+      end
+    end
   end
 end

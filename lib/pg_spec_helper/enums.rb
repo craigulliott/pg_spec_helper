@@ -28,5 +28,14 @@ class PGSpecHelper
       SQL
       rows.map { |row| row["enum_name"].to_sym }
     end
+
+    # delete all enums in the provided schema
+    def delete_enums schema_name
+      get_enum_names(schema_name).each do |enum_name|
+        connection.exec(<<~SQL)
+          DROP TYPE #{schema_name}.#{enum_name};
+        SQL
+      end
+    end
   end
 end
