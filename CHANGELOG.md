@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.3](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.2...v1.9.3) (2023-08-23)
+
+
+### Bug Fixes
+
+* deleting enums and triggers instead of removing the public schema, because it may have materialized views in it ([34a8afa](https://github.com/craigulliott/pg_spec_helper/commit/34a8afae9cca995ba8950d7d54ad377869901c19))
+
 ## [1.9.2](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.1...v1.9.2) (2023-08-23)
 
 
