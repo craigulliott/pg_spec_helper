@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.5](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.4...v1.9.5) (2023-08-24)
+
+
+### Bug Fixes
+
+* only deleting types which were created by us to prevent deleting non enums or types required by materialized views ([2ad6ff6](https://github.com/craigulliott/pg_spec_helper/commit/2ad6ff6ab5edff95bceafb5e646dd2b2f4f0729f))
+
 ## [1.9.4](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.3...v1.9.4) (2023-08-23)
 
 
