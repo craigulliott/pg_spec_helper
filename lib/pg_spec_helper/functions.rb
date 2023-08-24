@@ -8,6 +8,9 @@ class PGSpecHelper
         CREATE FUNCTION #{schema_name}.#{function_name}() returns trigger language plpgsql AS
         $$#{function_definition.strip}$$;
       SQL
+      # so we can delete them later
+      @created_functions ||= []
+      @created_functions << {schema_name: schema_name, function_name: function_name}
     end
 
     # return a list of function names for the provided schema
@@ -24,13 +27,14 @@ class PGSpecHelper
       rows.map { |r| r["routine_name"].to_sym }
     end
 
-    # delete all functions in the provided schema
-    def delete_functions schema_name
-      get_function_names(schema_name).each do |function_name|
+    # delete all functions which were created by this helper
+    def delete_created_functions
+      @created_functions&.each do |function|
         connection.exec(<<~SQL)
-          DROP FUNCTION #{schema_name}.#{function_name};
+          DROP FUNCTION IF EXISTS #{function[:schema_name]}.#{function[:function_name]};
         SQL
       end
+      @created_functions = []
     end
   end
 end

@@ -41,10 +41,10 @@ RSpec.describe PGSpecHelper do
       end
     end
 
-    describe :delete_functions do
+    describe :delete_created_functions do
       it "does not raise an error" do
         expect {
-          pg_spec_helper.delete_functions :my_schema
+          pg_spec_helper.delete_created_functions
         }.to_not raise_error
       end
 
@@ -59,7 +59,7 @@ RSpec.describe PGSpecHelper do
         end
 
         it "removes all functions" do
-          pg_spec_helper.delete_functions :my_schema
+          pg_spec_helper.delete_created_functions
           expect(pg_spec_helper.get_function_names(:my_schema)).to eql []
         end
       end

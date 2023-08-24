@@ -32,11 +32,11 @@ class PGSpecHelper
       rows.map { |row| row["enum_name"].to_sym }
     end
 
-    # delete all enums in the provided schema
+    # delete all enums which were created by this helper
     def delete_created_enums
       @created_enums&.each do |enum|
         connection.exec(<<~SQL)
-          DROP TYPE #{enum[:schema_name]}.#{enum[:enum_name]};
+          DROP TYPE IF EXISTS #{enum[:schema_name]}.#{enum[:enum_name]};
         SQL
       end
       @created_enums = []
