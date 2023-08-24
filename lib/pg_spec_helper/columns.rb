@@ -9,7 +9,6 @@ class PGSpecHelper
     def create_column schema_name, table_name, column_name, type, null = true, default = nil
       # note the `type` is safe from sql_injection due to the validation above
       connection.exec(<<~SQL)
-        create extension if not exists "uuid-ossp";
         ALTER TABLE #{connection.quote_ident schema_name.to_s}.#{connection.quote_ident table_name.to_s}
           ADD COLUMN #{connection.quote_ident column_name.to_s} #{type}
             #{null ? "" : "NOT NULL"}

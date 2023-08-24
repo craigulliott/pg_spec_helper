@@ -15,8 +15,12 @@ class PGSpecHelper
       end
       # create the table
       create_table schema_name, table_name
+      # required for auto increment
+      connection.exec(<<~SQL)
+        CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+      SQL
       # create the standard columns
-      create_column schema_name, table_name, :id, :uuid, null: false, default: "uuid_generate_v4()"
+      create_column schema_name, table_name, :id, :uuid, false, "uuid_generate_v4()"
       create_column schema_name, table_name, :created_at, :timestamp
       create_column schema_name, table_name, :updated_at, :timestamp
       # add the primary key
