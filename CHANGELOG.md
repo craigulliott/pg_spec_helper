@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.7](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.6...v1.9.7) (2023-08-24)
+
+
+### Bug Fixes
+
+* ensuring uniqueness for primary_keys ([6179b46](https://github.com/craigulliott/pg_spec_helper/commit/6179b46f683adf08836c7193dd63711fe2533778))
+
 ## [1.9.6](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.5...v1.9.6) (2023-08-24)
 
 
