@@ -7,6 +7,9 @@ class PGSpecHelper
       connection.exec(<<~SQL)
         CREATE TYPE #{schema_name}.#{enum_name} as ENUM ('#{values.join("','")}')
       SQL
+      # so we can delete them later
+      @created_enums ||= []
+      @created_enums << {schema_name: schema_name, enum_name: enum_name}
     end
 
     # Drop an enum
@@ -30,12 +33,13 @@ class PGSpecHelper
     end
 
     # delete all enums in the provided schema
-    def delete_enums schema_name
-      get_enum_names(schema_name).each do |enum_name|
+    def delete_created_enums
+      @created_enums&.each do |enum|
         connection.exec(<<~SQL)
-          DROP TYPE #{schema_name}.#{enum_name};
+          DROP TYPE #{enum[:schema_name]}.#{enum[:enum_name]};
         SQL
       end
+      @created_enums = []
     end
   end
 end

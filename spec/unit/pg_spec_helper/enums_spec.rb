@@ -31,10 +31,10 @@ RSpec.describe PGSpecHelper do
       end
     end
 
-    describe :delete_enums do
+    describe :delete_created_enums do
       it "does not raise an error" do
         expect {
-          pg_spec_helper.delete_enums :my_schema
+          pg_spec_helper.delete_created_enums
         }.to_not raise_error
       end
 
@@ -44,7 +44,7 @@ RSpec.describe PGSpecHelper do
         end
 
         it "removes all enums" do
-          pg_spec_helper.delete_enums :my_schema
+          pg_spec_helper.delete_created_enums
           expect(pg_spec_helper.get_enum_names(:my_schema)).to eql []
         end
       end

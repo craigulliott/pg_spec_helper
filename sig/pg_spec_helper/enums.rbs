@@ -3,6 +3,7 @@
 # Classes
 class PGSpecHelper
   module Enums
+    @created_enums: Array[{schema_name: Symbol, enum_name: Symbol}]
     def create_enum: (Symbol schema_name, Symbol enum_name, Array[Symbol] values) -> void
     def drop_enum: (Symbol schema_name, Symbol enum_name) -> void
     def get_enum_names: (Symbol schema_name) -> Array[Symbol]

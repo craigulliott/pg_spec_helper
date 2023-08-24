@@ -39,7 +39,7 @@ class PGSpecHelper
       # delete all the tables, functions and enums from within the public schema
       delete_tables :public
       delete_functions :public
-      delete_enums :public
+      delete_created_enums
     end
 
     def schema_exists? schema_name
