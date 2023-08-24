@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.6](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.5...v1.9.6) (2023-08-24)
+
+
+### Bug Fixes
+
+* create columns with default values ([91e05b8](https://github.com/craigulliott/pg_spec_helper/commit/91e05b8b14c38161965ab8e2dc1d7e869e399567))
+* fixed mistake in type signatures ([a2e5f1e](https://github.com/craigulliott/pg_spec_helper/commit/a2e5f1ed897dbd7968716126ccd6a675cc7a5641))
+
 ## [1.9.5](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.4...v1.9.5) (2023-08-24)
 
 
