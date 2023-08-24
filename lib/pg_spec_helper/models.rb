@@ -20,7 +20,7 @@ class PGSpecHelper
       create_column schema_name, table_name, :created_at, :timestamp
       create_column schema_name, table_name, :updated_at, :timestamp
       # add the primary key
-      create_primary_key schema_name, table_name, [:id], :pk
+      create_primary_key schema_name, table_name, [:id], :"#{table_name}_pkey"
       # execute the optional block
       if block
         this = self
