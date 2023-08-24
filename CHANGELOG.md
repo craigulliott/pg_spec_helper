@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.8](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.7...v1.9.8) (2023-08-24)
+
+
+### Bug Fixes
+
+* auto creating uuid-ossp extension if using create model ([bdc30a9](https://github.com/craigulliott/pg_spec_helper/commit/bdc30a95e4bbd2b5f8f347a10d29d874099997d6))
+* only delete functions which were created (to prevent deleting internal functions) ([1c23a36](https://github.com/craigulliott/pg_spec_helper/commit/1c23a36b64992934214c21cdbf6200f74e172511))
+
 ## [1.9.7](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.6...v1.9.7) (2023-08-24)
 
 
