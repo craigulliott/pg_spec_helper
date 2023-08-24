@@ -16,7 +16,7 @@ class PGSpecHelper
       # create the table
       create_table schema_name, table_name
       # create the standard columns
-      create_column schema_name, table_name, :id, :serial
+      create_column schema_name, table_name, :id, :uuid, null: false, default: "uuid_generate_v4()"
       create_column schema_name, table_name, :created_at, :timestamp
       create_column schema_name, table_name, :updated_at, :timestamp
       # add the primary key
