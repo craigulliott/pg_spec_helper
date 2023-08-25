@@ -17,7 +17,11 @@ class PGSpecHelper
       create_table schema_name, table_name
       # required for auto increment
       connection.exec(<<~SQL)
+        -- temporarily set the client_min_messages to WARNING to
+        -- suppress the NOTICE messages about extension already existing
+        SET client_min_messages TO WARNING;
         CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        SET client_min_messages TO NOTICE;
       SQL
       # create the standard columns
       create_column schema_name, table_name, :id, :uuid, false, "uuid_generate_v4()"
