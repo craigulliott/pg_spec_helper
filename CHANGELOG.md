@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.9](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.8...v1.9.9) (2023-08-24)
+
+
+### Bug Fixes
+
+* creating model now sets correct null and default values ([2e4634e](https://github.com/craigulliott/pg_spec_helper/commit/2e4634ebac8bf52e7eca497e891e492179f6b98e))
+
 ## [1.9.8](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.7...v1.9.8) (2023-08-24)
 
 
