@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.10](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.9...v1.9.10) (2023-08-25)
+
+
+### Bug Fixes
+
+* suppressing warning message about extension already exists ([65a9023](https://github.com/craigulliott/pg_spec_helper/commit/65a9023eecbb6ea8697b80791efd5003e6184fa8))
+
 ## [1.9.9](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.8...v1.9.9) (2023-08-24)
 
 
