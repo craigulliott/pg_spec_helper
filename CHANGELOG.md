@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.11](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.10...v1.9.11) (2023-09-01)
+
+
+### Bug Fixes
+
+* automatically add the citext extension if a column requires it ([0282269](https://github.com/craigulliott/pg_spec_helper/commit/028226916532ec135c47fe59540f556203d9964f))
+
 ## [1.9.10](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.9...v1.9.10) (2023-08-25)
 
 
