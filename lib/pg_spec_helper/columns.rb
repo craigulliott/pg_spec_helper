@@ -7,6 +7,17 @@ class PGSpecHelper
 
     # create a column for the provided table
     def create_column schema_name, table_name, column_name, type, null = true, default = nil
+      # required extension for citext
+      if type.to_sym == :citext
+        connection.exec(<<~SQL)
+          -- temporarily set the client_min_messages to WARNING to
+          -- suppress the NOTICE messages about extension already existing
+          SET client_min_messages TO WARNING;
+          CREATE EXTENSION IF NOT EXISTS "citext";
+          SET client_min_messages TO NOTICE;
+        SQL
+      end
+
       # note the `type` is safe from sql_injection due to the validation above
       connection.exec(<<~SQL)
         ALTER TABLE #{connection.quote_ident schema_name.to_s}.#{connection.quote_ident table_name.to_s}
