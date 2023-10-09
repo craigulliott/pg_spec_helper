@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.12](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.11...v1.9.12) (2023-10-09)
+
+
+### Bug Fixes
+
+* accepting both `database` and `dbname` as the name of the database and both `user` and `username` as the name of the user. This covers the naming conventions from both the PG gem and ActiveRecord. ([2f43555](https://github.com/craigulliott/pg_spec_helper/commit/2f435555e1789ecd002f4c22b4feb6f4d2b8cb56))
+
 ## [1.9.11](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.10...v1.9.11) (2023-09-01)
 
 
