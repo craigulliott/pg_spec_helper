@@ -53,17 +53,23 @@ class PGSpecHelper
 
   attr_reader :database, :username, :password, :host, :port
 
-  def initialize database:, username:, host:, port:, password: nil
+  def initialize host:, port:, database: nil, dbname: nil, user: nil, username: nil, password: nil
+    # for simplicity, we accept both `database` and `dbname` as the name of the database
+    # and both `user` and `username` as the name of the user
+    # this covers the naming conventions from both the PG gem and ActiveRecord
+    provided_database = dbname || database
+    provided_username = user || username
+
     # assert that all required options are present
-    raise MissingRequiredOptionError, "database is required" if database.nil?
+    raise MissingRequiredOptionError, "database is required" if provided_database.nil?
     raise MissingRequiredOptionError, "host is required" if host.nil?
-    raise MissingRequiredOptionError, "username is required" if username.nil?
+    raise MissingRequiredOptionError, "username is required" if provided_username.nil?
 
     # record the configuration
-    @database = database
+    @database = provided_database
     @host = host
     @port = port || 5432
-    @username = username
+    @username = provided_username
     # password is optional
     @password = password
 

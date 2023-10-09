@@ -31,6 +31,6 @@ class PGSpecHelper
   attr_reader password: nil | String
   attr_reader host: String
   attr_reader port: Integer
-  def initialize: (database: String, host: String, port: Integer, username: String, ?password: String | nil) -> void
+  def initialize: (host: String, port: Integer, ?password: String?, ?database: String?, ?dbname: String?, ?username: String?, ?user: String?) -> void
 
 end
