@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.13](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.12...v1.9.13) (2023-10-11)
+
+
+### Bug Fixes
+
+* adding deferrable and on_delete/on_update options to constraints ([4097c73](https://github.com/craigulliott/pg_spec_helper/commit/4097c7313f01c21cb2af2248a9c065e1cbe14da7))
+
 ## [1.9.12](https://github.com/craigulliott/pg_spec_helper/compare/v1.9.11...v1.9.12) (2023-10-09)
 
 
