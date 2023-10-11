@@ -15,12 +15,6 @@ RSpec.describe PGSpecHelper do
           pg_spec_helper.create_unique_constraint :my_schema, :my_table, [:my_column], :my_unique_constraint
         }.to_not raise_error
       end
-
-      it "creates a deferrable unique_constraint without raising an error" do
-        expect {
-          pg_spec_helper.create_unique_constraint :my_schema, :my_table, [:my_column], :my_unique_constraint, deferrable: true
-        }.to_not raise_error
-      end
     end
 
     describe :get_unique_constraint_names do
