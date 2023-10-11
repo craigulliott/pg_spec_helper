@@ -3,7 +3,11 @@
 # Classes
 class PGSpecHelper
   module ForeignKeys
-    def create_foreign_key: (Symbol schema_name, Symbol table_name, Array[Symbol] column_names, Symbol foreign_schema_name, Symbol foreign_table_name, Array[Symbol] foreign_column_names, Symbol foreign_key_name) -> void
+    def create_foreign_key: (Symbol schema_name, Symbol table_name, Array[Symbol] column_names, Symbol foreign_schema_name, Symbol foreign_table_name, Array[Symbol] foreign_column_names, Symbol foreign_key_name, ?initially_deferred: bool, ?deferrable: bool, ?on_delete: Symbol, ?on_update: Symbol) -> void
     def get_foreign_key_names: (Symbol schema_name, Symbol table_name) -> Array[Symbol]
+
+    private
+    def referential_action_to_sql: (Symbol referential_action_to_sql) -> String
+
   end
 end

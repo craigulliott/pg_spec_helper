@@ -19,6 +19,12 @@ RSpec.describe PGSpecHelper do
           pg_spec_helper.create_foreign_key :my_schema, :my_table, [:my_column], :my_schema, :foreign_table, [:foreign_column], :my_foreign_key
         }.to_not raise_error
       end
+
+      it "creates a deferrable foreign_key without raising an error" do
+        expect {
+          pg_spec_helper.create_foreign_key :my_schema, :my_table, [:my_column], :my_schema, :foreign_table, [:foreign_column], :my_foreign_key, deferrable: true
+        }.to_not raise_error
+      end
     end
 
     describe :get_foreign_key_names do

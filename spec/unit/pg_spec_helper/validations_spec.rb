@@ -15,6 +15,12 @@ RSpec.describe PGSpecHelper do
           pg_spec_helper.create_validation :my_schema, :my_table, :my_validation, "my_column > 0"
         }.to_not raise_error
       end
+
+      it "creates a deferrable validation without raising an error" do
+        expect {
+          pg_spec_helper.create_validation :my_schema, :my_table, :my_validation, "my_column > 0"
+        }.to_not raise_error
+      end
     end
 
     describe :get_validation_names do
